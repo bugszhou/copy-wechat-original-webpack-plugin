@@ -1,0 +1,24 @@
+{
+  "name": "copy-wechat-original-webpack-plugin",
+  "version": "0.0.1",
+  "description": "copy wechat original mini program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugszhou/copy-wechat-original-webpack-plugin.git"
+  },
+  "keywords": [
+    "wechat",
+    "mini",
+    "program"
+  ],
+  "author": "yiri.zhou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bugszhou/copy-wechat-original-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/bugszhou/copy-wechat-original-webpack-plugin#readme"
+}
