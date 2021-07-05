@@ -19,7 +19,7 @@ class CopyWechatOriginalPlugin {
     const dist = this.options.dist || "/dist";
     compiler.hooks.assetEmitted.tap(
       "CopyWechatOriginalPlugin",
-      (file, { content }) => {
+      (file, { content, targetPath }) => {
         if (/(app\.json)$/.test(file)) {
           const originalAppJson = glob.sync("app.json", {
             cwd: join(cwd, originalPath),
