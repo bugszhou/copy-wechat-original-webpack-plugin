@@ -38,6 +38,16 @@ class CopyWechatOriginalPlugin {
     compiler.hooks.afterDone.tap("CopyWechatOriginalPlugin", () => {
       fs.copySync(join(cwd, originalPath), dist, {
         overwrite: true,
+        filter(from) {
+          if (
+            /(app\.json)$/.test(from) ||
+            /(sitemap\.json)$/.test(from) ||
+            /node_modules/.test(from)
+          ) {
+            return false;
+          }
+          return true;
+        },
       });
     });
   }
