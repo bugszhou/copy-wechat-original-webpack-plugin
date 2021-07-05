@@ -1,3 +1,4 @@
+const { join } = require("path");
 const fs = require("fs-extra");
 const glob = require("globby");
 const merge = require("lodash.merge");
@@ -15,6 +16,7 @@ class CopyWechatOriginalPlugin {
   apply(compiler) {
     const cwd = this.options.cwd || process.cwd();
     const originalPath = this.options.originalPath || "/src/__original__/";
+    const dist = this.options.dist || "/dist";
     compiler.hooks.assetEmitted.tap(
       "CopyWechatOriginalPlugin",
       (file, { content }) => {
@@ -34,7 +36,7 @@ class CopyWechatOriginalPlugin {
     );
 
     compiler.hooks.afterDone.tap("CopyWechatOriginalPlugin", () => {
-      fs.copySync(join(cwd, originalPath), getDist(), {
+      fs.copySync(join(cwd, originalPath), dist, {
         overwrite: true,
       });
     });
