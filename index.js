@@ -28,8 +28,9 @@ class CopyWechatOriginalPlugin {
           const jsonData = fs.readJsonSync(
             join(cwd, `${originalPath}${originalAppJson}`),
           );
-          return JSON.stringify(
-            merge(JSON.parse(content.toString()), jsonData),
+          fs.writeJsonSync(
+            targetPath,
+            merge(JSON.parse(content.toString(), 2), jsonData),
           );
         }
       },
@@ -42,7 +43,11 @@ class CopyWechatOriginalPlugin {
           if (
             /(app\.json)$/.test(from) ||
             /(sitemap\.json)$/.test(from) ||
-            /node_modules/.test(from)
+            /(package\.json)$/.test(from) ||
+            /(tsconfig\.json)$/.test(from) ||
+            /(package-lock\.json)$/.test(from) ||
+            /node_modules/.test(from) ||
+            /.project/.test(from)
           ) {
             return false;
           }
