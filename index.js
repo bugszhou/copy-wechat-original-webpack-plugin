@@ -1,3 +1,7 @@
+const fs = require("fs-extra");
+const glob = require("globby");
+const merge = require("lodash.merge");
+
 /**
  * 复制原生小程序，以及合并app.json
  */
