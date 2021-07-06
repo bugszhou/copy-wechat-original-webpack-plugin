@@ -45,7 +45,7 @@ class CopyWechatOriginalPlugin {
         ignoreFiles = [optionIgnoreFiles];
       }
 
-      ignoreFiles.push([
+      ignoreFiles.push(
         /(app\.json)$/,
         /(sitemap\.json)$/,
         /(package\.json)$/,
@@ -53,7 +53,7 @@ class CopyWechatOriginalPlugin {
         /(package-lock\.json)$/,
         /node_modules/,
         /.project/,
-      ]);
+      );
 
       fs.copySync(join(cwd, originalPath), dist, {
         overwrite: true,
