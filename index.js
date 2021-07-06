@@ -37,18 +37,28 @@ class CopyWechatOriginalPlugin {
     );
 
     compiler.hooks.afterDone.tap("CopyWechatOriginalPlugin", () => {
+      let ignoreFiles = [];
+      if (Array.isArray(this.options.ignoreFiles)) {
+        ignoreFiles = [...this.options.ignoreFiles];
+      } else {
+        ignoreFiles = [this.options.ignoreFiles];
+      }
+
+      ignoreFiles.push([
+        /(app\.json)$/,
+        /(sitemap\.json)$/,
+        /(package\.json)$/,
+        /(tsconfig\.json)$/,
+        /(package-lock\.json)$/,
+        /node_modules/,
+        /.project/,
+      ]);
+
       fs.copySync(join(cwd, originalPath), dist, {
         overwrite: true,
         filter(from) {
-          if (
-            /(app\.json)$/.test(from) ||
-            /(sitemap\.json)$/.test(from) ||
-            /(package\.json)$/.test(from) ||
-            /(tsconfig\.json)$/.test(from) ||
-            /(package-lock\.json)$/.test(from) ||
-            /node_modules/.test(from) ||
-            /.project/.test(from)
-          ) {
+          const isIgnore = ignoreFiles.some((item) => item.test(from));
+          if (isIgnore) {
             return false;
           }
           return true;
