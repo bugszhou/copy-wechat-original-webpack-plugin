@@ -37,11 +37,12 @@ class CopyWechatOriginalPlugin {
     );
 
     compiler.hooks.afterDone.tap("CopyWechatOriginalPlugin", () => {
+      const optionIgnoreFiles = this.options.ignoreFiles || [];
       let ignoreFiles = [];
-      if (Array.isArray(this.options.ignoreFiles)) {
-        ignoreFiles = [...this.options.ignoreFiles];
+      if (Array.isArray(optionIgnoreFiles)) {
+        ignoreFiles = [...optionIgnoreFiles];
       } else {
-        ignoreFiles = [this.options.ignoreFiles];
+        ignoreFiles = [optionIgnoreFiles];
       }
 
       ignoreFiles.push([
