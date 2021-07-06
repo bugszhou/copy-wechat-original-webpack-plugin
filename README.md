@@ -9,5 +9,6 @@ new CopyWechatOriginalPlugin({
   cwd: process.cwd(),
   originalPath: "/src/__original__/", // 相对于cwd的路径
   dist: "/dist", // 相对于cwd的路径
+  ignoreFiles: [], // 正则表达式
 });
 ```
