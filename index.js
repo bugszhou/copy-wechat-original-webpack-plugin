@@ -1,7 +1,8 @@
 const { join } = require("path");
 const fs = require("fs-extra");
 const glob = require("globby");
-const merge = require("lodash.merge");
+const merge = require("lodash.mergewith");
+const arrayUnion = require("array-union");
 
 /**
  * 复制原生小程序，以及合并app.json
@@ -30,7 +31,15 @@ class CopyWechatOriginalPlugin {
           );
           fs.writeJsonSync(
             targetPath,
-            merge(JSON.parse(content.toString(), 2), jsonData),
+            merge(
+              JSON.parse(content.toString(), 2),
+              jsonData,
+              (objValue, srcValue) => {
+                if (_.isArray(objValue)) {
+                  return arrayUnion(objValue, objValue);
+                }
+              },
+            ),
           );
         }
       },
