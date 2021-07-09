@@ -35,8 +35,8 @@ class CopyWechatOriginalPlugin {
               JSON.parse(content.toString(), 2),
               jsonData,
               (objValue, srcValue) => {
-                if (_.isArray(objValue)) {
-                  return arrayUnion(objValue, objValue);
+                if (Array.isArray(objValue)) {
+                  return arrayUnion(objValue, srcValue);
                 }
               },
             ),
