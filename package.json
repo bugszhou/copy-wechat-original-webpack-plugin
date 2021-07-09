@@ -1,6 +1,6 @@
 {
   "name": "copy-wechat-original-webpack-plugin",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "copy wechat original mini program",
   "main": "index.js",
   "scripts": {
